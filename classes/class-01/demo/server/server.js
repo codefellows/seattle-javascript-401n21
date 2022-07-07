@@ -1,39 +1,30 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
+
+const stamper = require("./middleware/stamper.js");
+
+const notFoundHandler = require("./handlers/codes/404.js");
+const errorHandler = require("./handlers/codes/500.js");
+
+const hello = require("./handlers/hello.js");
+const evenodd = require("./handlers/evenodd.js");
+const bad = require("./handlers/bad");
+
 const app = express();
 
-const notFoundHandler = require('./handlers/404.js');
-const errorHandler = require('./handlers/500.js');
-const stamper = require('./middleware/stamper.js');
+app.get("/", stamper, hello);
+app.get("/data", stamper, evenodd);
+app.get("/bad", stamper, bad);
 
-app.get('/', stamper, (req, res) => {
-  res.status(200).send('Hello World')
-})
-
-app.get('/data', stamper, (req, res) => {
-  let outputObject = {
-    10: "even",
-    5: "odd",
-    "time": req.timestamp // we got this from the middleware
-  }
-
-  res.status(200).json(outputObject);
-});
-
-app.get('/bad', (req, res, next) => {
-  next('you messsed up')
-});
-
-app.use('*', notFoundHandler);
+app.use("*", notFoundHandler);
 app.use(errorHandler);
 
-
 function start(port) {
-  app.listen(port, () => console.log(`Server up on port ${port}`))
+  app.listen(port, () => console.log(`Server up on port ${port}`));
 }
 
 module.exports = {
   app: app,
-  start: start
-}
+  start: start,
+};
