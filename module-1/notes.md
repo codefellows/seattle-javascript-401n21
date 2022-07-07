@@ -15,4 +15,6 @@
    1. `npx jest --coverage`
    1. `npm test`
 1. Copy `.github/` and show actions
+1. Create `main` and `dev` branchs
 1. Push to new repo
+1. Create Heroku account & connect GitHub
