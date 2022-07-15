@@ -32,7 +32,7 @@ Express servers can quickly get big and out of control if you build them in one 
 - UPDATE
   - `app.put('/resource/:id')`
 - DESTROY
-  - `app.get('/resource/:id')`
+  - `app.delete('/resource/:id')`
 
 ### Route Modules
 
