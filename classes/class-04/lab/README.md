@@ -6,7 +6,7 @@ Dynamic API Phase 3: Add Database Abstraction and Associations to your API
 
 ## Before you begin
 
-1. Refer to the *Getting Started* guide  in the [lab submission instructions](../../../reference/submission-instructions/labs/README.md)
+1. Refer to the _Getting Started_ guide in the [lab submission instructions](../../../reference/submission-instructions/labs/README.md)
 1. Create a new repository called `api-server`
 1. Work in a new branch called `dev`, created from `main`
 1. Following completion of this assignment, create a Pull Request from `dev` to `main` and merge your code
@@ -29,6 +29,14 @@ Build a REST API using Express, by creating a proper series of endpoints that pe
     - `get()` or `read()`
     - `update()`
     - `delete()`
+- Add an association between your models.
+  - If the association is one to one:
+    - GET on the HasOne side should include the entire entity it has.
+    - GET on the BelongsTo side should include a property with a link to the entity it belongs to.
+  - If the association is one to many:
+    - GET on the HasMany side should include a property with the URL to access the list of items it has
+      - Hint: use a nested route on the parent collection, or a query parameter with the parent ID
+    - GET on the BelongsTo side should include a property with a link to the entity it belongs to
 
 > For the data models, you are free to choose your own data types and describe their fields ... For Example: person, animal, car, instrument, game
 
