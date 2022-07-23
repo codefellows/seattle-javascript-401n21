@@ -6,6 +6,7 @@
 
 - Verify your types are correct with `npm run check`
 - Verify your implementation is correct with `npm run test`
+  - When converting the value in a node to a string, use the `display` function in [`Collection.ts`](./src/Collection.ts).
 - DO NOT edit [assignment.test.ts](./src/).
 - Add your own tests to [LinkedList.test.ts](./src/LinkedList.test.ts).
 - Tests must pass the github workflow for full credit.

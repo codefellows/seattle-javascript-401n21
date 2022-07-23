@@ -17,20 +17,21 @@ describe("LinkedList", () => {
   class Hobbit {
     constructor(public name: string) {}
     toString() {
+      // YM - Young Master
       return `YM ${this.name}`;
-    } // YM - Young Master
+    }
   }
 
   it("creates a string for objects", () => {
     const list: Collection<Hobbit> = new LinkedList<Hobbit>();
 
-    list.insert({ name: "Frodo" });
-    list.insert({ name: "Sam" });
-    list.insert({ name: "Merry" });
-    list.insert({ name: "Pippin" });
+    list.insert(new Hobbit("Frodo"));
+    list.insert(new Hobbit("Sam"));
+    list.insert(new Hobbit("Merry"));
+    list.insert(new Hobbit("Pippin"));
 
     expect(list.toString()).toEqual(
-      "{YM Frodo} -> {YM Sam} -> {YM Merry} -> {YM Pippin} -> {}"
+      "{ YM Frodo } -> { YM Sam } -> { YM Merry } -> { YM Pippin } -> NULL"
     );
   });
 });
