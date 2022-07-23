@@ -21,6 +21,7 @@
 - `number` is any JavaScript number - `5`, `-17`, `22.356`, `3/10`, `Number.MAX_VALUE`, etc.
 - `string` is any JavaScript string - `'hello'`, `'goodbye'`, `\`I am ${age}\``
 - `interface Person { name: string; age: number; }` is a JavaScript object with two properties, `name` and `age`. `name` must be a string, and `age` must be a number.
+- `interface Pair<T> {first: T, second: T}` is an object with two properties, `first` and `second`, which are the same type, but that type is provided when the `Pair` is declared.
 - `(name: string, age: number) => Person` is a function with two parameters, `name` (a string) and `age` (a number), which will return an object of type `Person`.
 - `() => void` is a function with no arguments, and returns nothing.
   <!-- - `'hello'`' is the JavaScript string `'hello'` and no other string. -->

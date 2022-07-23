@@ -25,10 +25,10 @@ describe("LinkedList", () => {
   it("creates a string for objects", () => {
     const list: Collection<Hobbit> = new LinkedList<Hobbit>();
 
-    list.insert(new Hobbit("Frodo"));
-    list.insert(new Hobbit("Sam"));
-    list.insert(new Hobbit("Merry"));
     list.insert(new Hobbit("Pippin"));
+    list.insert(new Hobbit("Merry"));
+    list.insert(new Hobbit("Sam"));
+    list.insert(new Hobbit("Frodo"));
 
     expect(list.toString()).toEqual(
       "{ YM Frodo } -> { YM Sam } -> { YM Merry } -> { YM Pippin } -> NULL"
