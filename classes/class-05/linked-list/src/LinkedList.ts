@@ -1,34 +1,30 @@
-import { Collection, display } from "./Collection";
+import { Node } from '@babel/traverse';
+import { Collection, display } from './Collection';
+
+// ES5 prototype
+// const LinkedList = function() {};
+// LinkedList.prototype.insert(item) {};
+
+// class
+// interface
+
+// Three parts of a variable:
+// let name: type = value;
 
 export class LinkedList<T> implements Collection<T> {
-  private head?: LinkedListNode<T>;
+  start: Node<T> | undefined; // or head
 
-  insert(value: T) {
-    this.head = { value, next: this.head };
-  }
-
-  includes(value: T): boolean {
-    let node = this.head;
-    while (node) {
-      if (node.value === value) return true;
-      node = node.next;
-    }
-    return false;
-  }
-
-  toString(): string {
-    const str = [];
-    let node = this.head;
-    while (node) {
-      str.push(`{ ${display(node.value)} }`);
-      node = node.next;
-    }
-    str.push("NULL");
-    return str.join(" -> ");
+  insert(item: T) {
+    const newNode = {
+      item: item,
+      next: this.start,
+    };
+    this.start = newNode;
   }
 }
 
-interface LinkedListNode<T> {
-  value: T;
-  next?: LinkedListNode<T>;
+// A node tracks one item and the next node
+interface Node<T> {
+  item: T;
+  next: Node<T> | undefined;
 }
