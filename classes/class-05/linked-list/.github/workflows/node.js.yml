@@ -3,20 +3,21 @@ name: Run Javascript Tests
 on: [push]
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-versions: [18.x]
+    strategy:
+      matrix:
+        node-versions: [18.x]
 
-        steps:
-            - uses: actions/checkout@v1
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-            - run: npm install
-            - run: npm test
-              env:
-                  CI: true
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npx tsc
+      - run: npm test
+        env:
+          CI: true
