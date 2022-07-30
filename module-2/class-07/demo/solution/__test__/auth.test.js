@@ -28,6 +28,8 @@ describe('web server authentication', () => {
     // expect(response.body.password).toEqual(
     //   await bcrypt.hash('test password', 10)
     // );
+
+    expect(response.body.role).toBe('user');
   });
 
   it('signs in users', async () => {

@@ -21,7 +21,7 @@ async function signinUser(req, res) {
     });
     const isValid = await bcrypt.compare(req.body.password, user.password);
     if (isValid) {
-      res.status(200).send(user);
+      res.status(200).send({ user: user.username, token: user.token });
       return;
     }
   } catch (e) {
