@@ -10,63 +10,43 @@ class Collection {
   }
 
   async create(obj, options) {
-    try {
-      // create the new model
-      let record = await this.model.create(obj);
+    // create the new model
+    let record = await this.model.create(obj);
 
-      if (options) {
-        if (options.association) this.createAssociate(record, options.association);
-      }
-      return record;
-    } catch (e) {
-      return e;
+    if (options) {
+      if (options.association)
+        this.createAssociate(record, options.association);
     }
+    return record;
   }
 
   async read(id) {
-
-    let options = { include: [...this.associations.keys()] }
+    let options = { include: [...this.associations.keys()] };
     let records = null;
 
-    try {
-      if (id) {
-        options['where'] = { id };
-        records = await this.model.findOne(options);
-      } else {
-        records = await this.model.findAll(options);
-      }
-
-      return records;
-    } catch (e) {
-      return e;
+    if (id) {
+      options['where'] = { id };
+      records = await this.model.findOne(options);
+    } else {
+      records = await this.model.findAll(options);
     }
+
+    return records;
   }
 
   async update(id, obj) {
-    try {
+    if (!id) throw new Error('No record id provided');
 
-      if (!id) throw new Error('No record id provided');
-
-      let record = await this.model.findOne({ where: { id } });
-      let updatedRecord = await record.update(obj);
-      return updatedRecord;
-
-    } catch (e) {
-      return e;
-    }
+    let record = await this.model.findOne({ where: { id } });
+    let updatedRecord = await record.update(obj);
+    return updatedRecord;
   }
 
   async delete(id) {
-    try {
+    if (!id) throw new Error('No record ID provided');
 
-      if (!id) throw new Error('No record ID provided');
-
-      let deletedRecord = await this.model.destroy({ where: { id } });
-      return deletedRecord;
-
-    } catch (e) {
-      return e;
-    }
+    let deletedRecord = await this.model.destroy({ where: { id } });
+    return deletedRecord;
   }
 
   belongsToManyThrough(collection, model) {
@@ -80,22 +60,16 @@ class Collection {
    * @param {Object<id INT, Sequelize Model>} - association
    *  */
   async createAssociate(record, association) {
-    try {
-
-      // check if the association collection model is contained within the associations Map.
-      if (!this.associations.has(association.collection.model)) {
-        throw new Error('No association found for specified collection');
-      }
-      let associatedModel = this.associations.get(association.collection.model);
-      let associatedModelRecord = await associatedModel.create({
-        [`${this.model.name}Id`]: record.id,
-        [`${association.collection.model.name}Id`]: association.id,
-      });
-      return associatedModelRecord;
-
-    } catch (e) {
-      return e;
+    // check if the association collection model is contained within the associations Map.
+    if (!this.associations.has(association.collection.model)) {
+      throw new Error('No association found for specified collection');
     }
+    let associatedModel = this.associations.get(association.collection.model);
+    let associatedModelRecord = await associatedModel.create({
+      [`${this.model.name}Id`]: record.id,
+      [`${association.collection.model.name}Id`]: association.id,
+    });
+    return associatedModelRecord;
   }
 }
 

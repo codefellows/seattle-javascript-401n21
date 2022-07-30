@@ -13,15 +13,10 @@ afterAll(async () => {
 });
 
 describe('web server', () => {
-
   it('should respond with a 404 on an invalid route', () => {
-
-    return mockRequest
-      .get('/foobar')
-      .then(results => {
-        expect(results.status).toBe(404);
-      });
-
+    return mockRequest.get('/foobar').then((results) => {
+      expect(results.status).toBe(404);
+    });
   });
 
   // These tests are wired with async/await --- so much cleaner!
@@ -34,7 +29,7 @@ describe('web server', () => {
     const data = {
       name: 'carrots',
       calories: 25,
-      type: 'vegetable'
+      type: 'vegetable',
     };
 
     const response = await mockRequest.post('/food').send(data);
@@ -44,7 +39,7 @@ describe('web server', () => {
     expect(response.body.id).toBeDefined();
 
     // Is the data we sent in the database?
-    Object.keys(data).forEach(key => {
+    Object.keys(data).forEach((key) => {
       expect(data[key]).toEqual(response.body[key]);
     });
   });
@@ -64,12 +59,12 @@ describe('web server', () => {
   });
 
   it('can update a record', async () => {
-    const data = { name: "Broccoli" };
+    const data = { name: 'Broccoli' };
     const response = await mockRequest.put('/food/1').send(data);
     expect(response.status).toBe(200);
     expect(typeof response.body).toEqual('object');
     expect(response.body.id).toEqual(1);
-    expect(response.body.name).toEqual("Broccoli");
+    expect(response.body.name).toEqual('Broccoli');
   });
 
   it('can delete a record', async () => {
@@ -78,7 +73,5 @@ describe('web server', () => {
 
     const getResponse = await mockRequest.get('/food');
     expect(getResponse.body.length).toEqual(0);
-
   });
-
 });

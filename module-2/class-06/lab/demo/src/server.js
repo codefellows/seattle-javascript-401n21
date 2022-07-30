@@ -7,12 +7,14 @@ const express = require('express');
 const notFoundHandler = require('./error-handlers/404.js');
 const errorHandler = require('./error-handlers/500.js');
 const logger = require('./middleware/logger.js');
+const authRoutes = require('./middleware/auth/route.js');
 
 const foodRoutes = require('./routes/food.js');
 const clothesRoutes = require('./routes/clothes.js');
+const userRoutes = require('./routes/user.js');
 
 // STRETCH GOAL
-const v1Routes = require('./routes/v1.js');
+// const v1Routes = require('./routes/v1.js');
 
 const app = express();
 
@@ -25,6 +27,8 @@ app.use(logger);
 // Use our routes from the routing module...
 app.use(foodRoutes);
 app.use(clothesRoutes);
+// app.use(userRoutes);
+app.use(authRoutes);
 
 // STRETCH GOAL
 // app.use('/api/v1', v1Routes);
@@ -37,8 +41,10 @@ app.use(errorHandler);
 // Export an object with the express app and separate method that can start the server
 module.exports = {
   server: app,
-  start: port => {
-    if (!port) { throw new Error("Missing Port"); }
+  start: (port) => {
+    if (!port) {
+      throw new Error('Missing Port');
+    }
     app.listen(port, () => console.log(`Listening on ${port}`));
   },
 };
