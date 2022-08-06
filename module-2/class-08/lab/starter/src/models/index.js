@@ -5,14 +5,6 @@ const DATABASE_URL =
   process.env.NODE_ENV === 'test'
     ? 'sqlite::memory:'
     : process.env.DATABASE_URL;
-const { Sequelize, DataTypes } = require('sequelize');
-
-const Collection = require('./data-collection.js');
-const foodSchema = require('./food/model.js');
-const clothesSchema = require('./clothes/model.js');
-const recipeSchema = require('./recipe/model.js');
-const foodRecipeSchema = require('./foodRecipe/model.js');
-const userSchema = require('./users/model.js');
 
 const baseOptions =
   process.env.NODE_ENV === 'dev'
@@ -37,6 +29,15 @@ const sequelizeOptions = {
       }
     : {}),
 };
+
+const { Sequelize, DataTypes } = require('sequelize');
+
+const Collection = require('./data-collection.js');
+const foodSchema = require('./food/model.js');
+const clothesSchema = require('./clothes/model.js');
+const recipeSchema = require('./recipe/model.js');
+const foodRecipeSchema = require('./foodRecipe/model.js');
+const userSchema = require('./users/model.js');
 
 // turn schemas into Sequelize models
 const sequelize = new Sequelize(DATABASE_URL, sequelizeOptions);
