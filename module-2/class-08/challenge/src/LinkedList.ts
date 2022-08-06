@@ -8,6 +8,20 @@ export class LinkedList<T> implements Collection<T> {
   static zip<T>(ll1: LinkedList<T>, ll2: LinkedList<T>): LinkedList<T> {
     const zipped = new LinkedList<T>();
 
+    let ll1h = ll1.head;
+    let ll2h = ll2.head;
+
+    while (ll1h || ll2h) {
+      if (ll1h) {
+        zipped.append(ll1h.item);
+        ll1h = ll1h.next;
+      }
+      if (ll2h) {
+        zipped.append(ll2h.item);
+        ll2h = ll2h.next;
+      }
+    }
+
     return zipped;
   }
 
