@@ -21,7 +21,7 @@ describe("linked list", () => {
       ll.append(2);
 
       expect(() => {
-        ll.kthFromEnd(0);
+        ll.kthFromEnd(6);
       }).toThrow();
     });
   });
