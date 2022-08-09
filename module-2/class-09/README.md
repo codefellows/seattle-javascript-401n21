@@ -1,24 +1,39 @@
-# Auth Module Final Project
+# Mock Interviews
 
-Work with a group to build something amazing with your Authenticated API
+## Specifications
 
-- Recap
-  - REST APIs
-  - Authentication and Authorization
-  - Postgres and Data Modeling
-  - Testing and TDD
+- Read all of the following instructions carefully.
+- Today, you and a peer will take turns interviewing each other with a code challenge
+- The interviewer will score the candidate according to the [Whiteboard Rubric](https://docs.google.com/spreadsheets/d/1scthkmARfzAFZrSYAp6LA2coOaoWUWbSzMbtIU4jcHw){:target="\_blank"}
+  - Notes can be taken in an electronic copy of the doc, or a print out of it
+  - In either case, the completed rubric will be given to the candidate for review purposes
+- The candidate submits the rubric with the score they achieved as a candidate
+- Each interview should be time-boxed to a strict 30 minutes
 
-# Mock Interview
+## Interview questions
 
-|          | Interview 1                 | Interview 2                    |
-| -------- | --------------------------- | ------------------------------ |
-| Question | [Reverse LL][q1]            | [Is Palindrome][q2]            |
-| Test     | [01-reverse.test.ts][test1] | [02-palindrome.test.ts][test2] |
-| Solution | [LinkedList01.ts][ll1]      | [LinkedList02.ts][ll2]         |
+Don't look at the interview questions until you decide who will be the first interviewer.
 
-[q1]: https://github.com/codefellows/common_curriculum/blob/main/data_structures_and_algorithms/Code_401/class-09/interview-01.md
-[q2]: https://github.com/codefellows/common_curriculum/blob/main/data_structures_and_algorithms/Code_401/class-09/interview-02.md
-[test1]: https://github.com/codefellows/common_curriculum/blob/54eaa9afb405b81f97790eaa28fa86289b76c4d2/data_structures_and_algorithms/Code_401/class-09/_solutions/typescript/src/01-reverse.test.ts
-[test2]: https://github.com/codefellows/common_curriculum/blob/54eaa9afb405b81f97790eaa28fa86289b76c4d2/data_structures_and_algorithms/Code_401/class-09/_solutions/typescript/src/02-palindrome.test.ts
-[ll1]: https://github.com/codefellows/common_curriculum/blob/54eaa9afb405b81f97790eaa28fa86289b76c4d2/data_structures_and_algorithms/Code_401/class-09/_solutions/typescript/src/LinkedList01.ts
-[ll2]: https://github.com/codefellows/common_curriculum/blob/54eaa9afb405b81f97790eaa28fa86289b76c4d2/data_structures_and_algorithms/Code_401/class-09/_solutions/typescript/src/LinkedList02.ts
+1. The first interviewer will ask [this question](interview-01.md){:target="\_blank"}
+1. The second interviewer will ask [this question](interview-02.md){:target="\_blank"}
+
+## Structure
+
+Utilize your whiteboard skills to solve the problem according to the steps in the Rubric, and example whiteboard layout.
+
+## Example
+
+By the end of the interview, your whiteboard should resemble the example whiteboard layout:
+
+![example whiteboard layout](../../assets/whiteboard-example.png).
+
+## Documentation
+
+The interviewer should take detailed notes on the Rubric form. Points should be assessed for every item on the Rubric. The total points should be summed and recorded on the form.
+
+## Submission Instructions
+
+1. Review the notes your interviewer recorded for you on the Rubric.
+1. Submit the final result of your interview as a candidate:
+   1. Paste the link the rubric that evaluated you as a candidate (either a google doc, or a photo of a printout)
+   1. Comment on your submission with summary of how it went for you, what went well, and what you'd like to improve
