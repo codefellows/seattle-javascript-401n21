@@ -19,12 +19,14 @@ function makeRecording() {
   };
 }
 
+// The first listener prints the recorded station data, the payload.
 weatherStation.addListener("change", (recording) =>
   console.log("Listener 1", recording)
 );
 
 weatherStation.emit("change", { id: 2, ...makeRecording() });
 
+// Derek is an event listener (or handler)
 const derek = (recording) => {
   console.log("Derek");
 
@@ -38,8 +40,10 @@ const derek = (recording) => {
   }
 };
 
+// When the weather changes, tell Derek
 weatherStation.addListener("change", derek);
 
+// Danny is also a listener
 const danny = (recording) => {
   console.log("Danny");
   // If it's snowing, go snowboarding
@@ -50,8 +54,10 @@ const danny = (recording) => {
 
 weatherStation.addListener("change", danny);
 
+// Send a weather change event to the listeners we have so far
 weatherStation.emit("change", { id: 3, ...makeRecording() });
 
+// Hugo is a listener!
 const hugo = (recording) => {
   console.log("Hugo");
   if (recording.precipitation >= 2) {
@@ -59,6 +65,7 @@ const hugo = (recording) => {
   }
 
   if (recording.temperature <= 40) {
+    // But Hugo stops listening when the weather gets too bad
     weatherStation.removeListener("change", hugo);
   }
 };
@@ -74,6 +81,7 @@ const tony = (recording) => {
 
 weatherStation.addListener("change", tony);
 
+// Every 2000 ms (that is, 2 seconds), tell everyone about the latest weather
 setInterval(() => {
   weatherStation.emit("change", makeRecording());
 }, 2000);
