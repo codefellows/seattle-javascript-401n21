@@ -7,6 +7,9 @@ Implement a data structure SetOfStacks that mimics this.
 SetOfStacks should be composed of several stacks, and should create a new stack once the previous one exceeds capacity.
 `push()`, `pop()`, `peek()` should behave identically to a single stack (that is, pop() should return the same values as it would if there were just a single stack).
 
+When you go to implement this class, you must correctly use the provided Stack class.
+The provided Stack class handles the "toppling over" by throwing an error when the stack is "too tall".
+
 ## TypeScript Instructions
 
 - Verify your types are correct with `npm run check`
