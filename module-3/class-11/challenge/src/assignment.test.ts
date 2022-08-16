@@ -17,7 +17,7 @@ describe("SetOfStacks", () => {
   });
 
   // BONUS QUESTION (2 points)
-  it.skip("tracks total size", () => {
+  it("tracks total size", () => {
     const stack = new SetOfStacks(3);
 
     expect(stack.size).toBe(0);
