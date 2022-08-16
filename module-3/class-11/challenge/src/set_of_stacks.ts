@@ -1,4 +1,6 @@
 export class SetOfStacks<T> {
+  private stacks: Stack<T>[] = [];
+
   // Must use the below Stack class internally.
   // When you need to create a new stack, do so with:
   //
@@ -7,20 +9,40 @@ export class SetOfStacks<T> {
   constructor(private readonly maxHeight: number) {}
 
   push(t: T): void {
-    throw new Error("TODO(you)");
+    if (this.stacks.length === 0) {
+      this.stacks.push(new Stack<T>(this.maxHeight));
+    }
+    let top = this.stacks.at(-1)!;
+    if (top.size === this.maxHeight) {
+      top = new Stack<T>(this.maxHeight);
+      this.stacks.push(top);
+    }
+    top.push(t);
   }
 
-  pop(): T {
-    throw new Error("TODO(you)");
+  pop(): T | undefined {
+    let top = this.stacks.at(-1);
+    if (top) {
+      let t = top.pop();
+      if (top.size === 0) {
+        this.stacks.pop();
+      }
+      return t;
+    }
+    return undefined;
   }
 
-  get peek(): T {
-    throw new Error("TODO(you)");
+  get peek(): T | undefined {
+    let top = this.stacks.at(-1);
+    if (top) {
+      return top.peek;
+    }
+    return undefined;
   }
 
   // BONUS QUESTION
   get size(): number {
-    throw new Error("TODO(you)");
+    return this.stacks.reduce((c, s) => c + s.size, 0);
   }
 }
 
