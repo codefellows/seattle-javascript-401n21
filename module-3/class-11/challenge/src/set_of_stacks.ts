@@ -1,3 +1,22 @@
+// Start with a class
+export class Person {
+  // Two properties
+  // name;
+  // age;
+
+  // Give them types!
+  name: string;
+  age: number;
+
+  constructor(name: string, age: number) {
+    // Assign them up front
+    this.name = name;
+    this.age = age;
+  }
+}
+
+const david = new Person("David", 35);
+
 export class SetOfStacks<T> {
   private stacks: Stack<T>[] = [];
 
@@ -6,7 +25,7 @@ export class SetOfStacks<T> {
   //
   //    let stack = new Stack<T>(this.maxHeight);
   //
-  constructor(private readonly maxHeight: number) {}
+  constructor(readonly maxHeight: number) {}
 
   push(t: T): void {
     if (this.stacks.length === 0) {
