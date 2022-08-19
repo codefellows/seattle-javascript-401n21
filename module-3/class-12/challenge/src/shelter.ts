@@ -4,13 +4,21 @@ interface Animal {
 }
 
 export class Shelter {
+  friends: Animal[] = [];
+
   enqueue(name: string, type: "cat" | "dog"): void {
-    // TODO(you);
+    this.friends.push({ name, type });
   }
 
   dequeue(type?: "cat" | "dog"): string {
-    // TODO(you);
-    // If no type is given (type === undefined), return the next animal.
-    // If the type is given, return the next animal of a type.
+    if (type === undefined) {
+      const friend = this.friends.shift();
+      return friend?.name ?? "";
+    } else {
+      const idx = this.friends.findIndex((f) => f.type === type);
+      const friend = this.friends[idx];
+      this.friends.splice(idx, 1);
+      return friend.name;
+    }
   }
 }
