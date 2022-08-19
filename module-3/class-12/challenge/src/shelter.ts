@@ -6,20 +6,16 @@ interface Animal {
 }
 
 export class Shelter {
-  newestFriend: Animal | undefined;
-  oldestFriend: Animal | undefined;
+  next: Animal | undefined;
+  prev: Animal | undefined;
 
   enqueue(name: string, type: "cat" | "dog"): void {
-    this.newestFriend = { name, type, next: this.newestFriend };
-    if (!this.oldestFriend) {
-      this.oldestFriend = this.newestFriend;
-    } else {
-      this.newestFriend.next!.prev = this.newestFriend;
-    }
+    this.next = { name, type, next: this.next };
+    (!this.prev ? this : this.next.next!).prev = this.next;
   }
 
   dequeue(type?: "cat" | "dog"): string | undefined {
-    let friend = this.oldestFriend;
+    let friend = this.prev;
     if (type !== undefined) {
       while (friend && friend?.type !== type) {
         friend = friend?.prev;
@@ -28,16 +24,8 @@ export class Shelter {
     if (friend === undefined) {
       return undefined;
     }
-    if (friend?.prev) {
-      friend.prev.next = friend.next;
-    } else {
-      this.newestFriend = friend.next;
-    }
-    if (friend?.next) {
-      friend.next.prev = friend.prev;
-    } else {
-      this.oldestFriend = friend.prev;
-    }
+    (friend.prev ? friend.prev : this).next = friend.next;
+    (friend.next ? friend.next : this).prev = friend.prev;
     return friend.name;
   }
 }
