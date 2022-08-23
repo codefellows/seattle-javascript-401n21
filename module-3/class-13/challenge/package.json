@@ -1,0 +1,11 @@
+{
+  "name": "challenge-13",
+  "description": "Challenge 13: Matched Brackets",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^28.1.6",
+    "jest": "^28.1.3"
+  }
+}
