@@ -50,21 +50,38 @@ class Node {
     return traversal;
   }
 
-  inOrder() {}
-  postOrder() {}
+  inOrder() {
+    // Left, Root, Right
+    return [
+      ...(this.left?.inOrder() ?? []),
+      this.value,
+      ...(this.right?.inOrder() ?? []),
+    ];
+  }
+
+  postOrder() {
+    // Left, Right, Root
+    return [
+      ...(this.left?.postOrder() ?? []),
+      ...(this.right?.postOrder() ?? []),
+      this.value,
+    ];
+  }
 }
 
 class BinaryTree {
   constructor(root) {
     this.root = root;
   }
-
   preOrder() {
-    // return this.root.preOrder();
-    return preOrder(this.root);
+    return this.root?.preOrder();
   }
-  inOrder() {}
-  postOrder() {}
+  inOrder() {
+    return this.root?.inOrder();
+  }
+  postOrder() {
+    return this.root?.postOrder();
+  }
 }
 
 module.exports = { Node, BinaryTree };
