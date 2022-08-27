@@ -1,6 +1,6 @@
 {
-  "name": "challenge-13",
-  "description": "Challenge 13: Matched Brackets",
+  "name": "challenge-15",
+  "description": "Challenge 15: Trees",
   "scripts": {
     "test": "jest"
   },
