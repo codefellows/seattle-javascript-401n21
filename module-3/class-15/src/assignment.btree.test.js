@@ -1,13 +1,18 @@
 const { BinaryTree, Node } = require("./binary_tree.js");
 
 describe("Binary Tree", () => {
+  //          1
+  //        /  \
+  //       7    9
+  //      / \    \
+  //     2   6    9
+  //        / \   /
+  //       11  5 5
   const tree = new BinaryTree(
     new Node(
       1,
       new Node(7, new Node(2), new Node(6, new Node(5), new Node(11))),
-      new Node(9),
-      new Node(9),
-      new Node(5)
+      new Node(9, undefined, new Node(9, new Node(5)))
     )
   );
 

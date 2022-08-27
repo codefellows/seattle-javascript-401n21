@@ -6,6 +6,7 @@ class BinaryTree {
   constructor(root) {
     this.root = root;
   }
+
   preOrder() {}
   inOrder() {}
   postOrder() {}
