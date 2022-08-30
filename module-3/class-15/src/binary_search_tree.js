@@ -1,6 +1,28 @@
 const { Node, BinaryTree } = require("./binary_tree.js");
 
 class BinarySearchTreeNode extends Node {
+  constructor(value, level, left, right) {
+    super(value, left, right);
+    this.level = level ?? 1;
+  }
+
+  skew() {
+    if (this.left?.level !== this.level) return this;
+    const l = this.left;
+    this.left = l.left;
+    l.left = this;
+    return l;
+  }
+
+  split() {
+    if (this.right?.right?.level !== this.level) return this;
+    let r = this.right;
+    this.right = r.left;
+    r.left = this;
+    r.level += 1;
+    return r;
+  }
+
   add(number) {
     if (number === this.value) {
       // Nothing, we already have this number!
@@ -8,15 +30,21 @@ class BinarySearchTreeNode extends Node {
       if (!this.right) {
         this.right = new BinarySearchTreeNode(number);
       } else {
-        this.right.add(number);
+        this.right = this.right.add(number);
       }
     } else if (number < this.value) {
       if (!this.left) {
         this.left = new BinarySearchTreeNode(number);
       } else {
-        this.left.add(number);
+        this.left = this.left.add(number);
       }
     }
+
+    return this.skew().split();
+  }
+
+  depth() {
+    return 1 + Math.max(this.left?.depth() ?? 0, this.right?.depth() ?? 0);
   }
 
   contains(number) {
@@ -47,8 +75,12 @@ class BinarySearchTree extends BinaryTree {
     if (!this.root) {
       this.root = new BinarySearchTreeNode(number);
     } else {
-      this.root.add(number);
+      this.root = this.root.add(number);
     }
+  }
+
+  depth() {
+    return this.root?.depth() ?? 0;
   }
 
   contains(number) {
