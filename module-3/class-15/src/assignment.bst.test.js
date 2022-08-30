@@ -12,6 +12,6 @@ describe.skip("Binary Search Tree", () => {
 
   it("looks up whether an item is in the tree", () => {
     expect(tree.contains(3)).toBe(true);
-    expect(tree.contains(8)).toBe(true);
+    expect(tree.contains(8)).toBe(false);
   });
 });
