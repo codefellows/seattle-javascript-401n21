@@ -64,6 +64,55 @@ class BinarySearchTreeNode extends Node {
       }
     }
   }
+
+  predR = () => (this.right === undefined ? this : predR(this.right));
+  pred = () => (this?.left === undefined ? this : predR(this.left));
+  succL = () => (this.left === undefined ? this : succL(this.left));
+  succ = () => (this?.right === undefined ? this : succL(this.right));
+
+  delete(value) {
+    if (value > this.value) {
+      this.right = this.right?.delete(value);
+    } else if (value < this.value) {
+      this.left = this.left?.delete(value);
+    } else {
+      if (this.left === undefined && this.right === undefined) {
+        return undefined;
+      } else {
+        if (this.left === undefined) {
+          this.value = this.succ().value;
+          this.right = this.right?.delete(this.value, this.right);
+        } else {
+          this.value = this.pred().value;
+          this.left = this.left?.delete(this.value);
+        }
+      }
+    }
+
+    return this.balance();
+  }
+
+  balance() {
+    this.decreaseLevel();
+    let t = this.skew();
+    t.right = t.right?.skew();
+    if (t.right) {
+      t.right.right = t.right.right?.skew();
+    }
+
+    t.split();
+    t.right = t.right?.split();
+  }
+
+  decreaseLevel() {
+    let shouldBe = Math.min(t.left?.level ?? 0, t.right?.level ?? 0);
+    if (shouldBe < this.level) {
+      this.level = shouldBe;
+      if (this.right && shouldBe < this.right.level) {
+        this.right.level = shouldBe;
+      }
+    }
+  }
 }
 
 class BinarySearchTree extends BinaryTree {
