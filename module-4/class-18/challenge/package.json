@@ -1,0 +1,11 @@
+{
+  "name": "challenge-15",
+  "description": "Challenge 15: Trees",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^28.1.6",
+    "jest": "^28.1.3"
+  }
+}
