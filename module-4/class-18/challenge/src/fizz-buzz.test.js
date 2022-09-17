@@ -1,26 +1,18 @@
-const {KAryTree, fizzBuzz} = require("./kary-tree");
+const {Tree, fizzBuzz} = require("./tree");
 
 describe("FizzBuzzTree", () => {
   it("makes a new tree with all elements fizzbuzzed", () => {
-    const tree = new KAryTree(1, [
-      new KAryTree(2),
-      new KAryTree(3, [
-        new KAryTree(4, [new KAryTree(5), new KAryTree(6)]),
-        new KAryTree(7),
-      ]),
-      new KAryTree(8, [
-        new KAryTree(9, [new KAryTree(10), new KAryTree(11)]),
-        new KAryTree(12),
-      ]),
-      new KAryTree(13, [
-        new KAryTree(14, [new KAryTree(15), new KAryTree(16)]),
-      ]),
+    const tree = new Tree(1, [
+      new Tree(2),
+      new Tree(3, [new Tree(4, [new Tree(5), new Tree(6)]), new Tree(7)]),
+      new Tree(8, [new Tree(9, [new Tree(10), new Tree(11)]), new Tree(12)]),
+      new Tree(13, [new Tree(14, [new Tree(15), new Tree(16)])]),
     ]);
 
     const fizzBuzzTree = fizzBuzz(tree);
 
     expect(tree).not.toBe(fizzBuzzTree);
-    expect(fizzBuzzTree.inOrder()).toStrictEqual([
+    expect(fizzBuzzTree.preOrder()).toStrictEqual([
       1,
       [2],
       ["fizz", [4, ["buzz"], ["fizz"]], [7]],
