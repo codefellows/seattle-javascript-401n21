@@ -1,4 +1,4 @@
-class KAryTree {
+class Tree {
   constructor(value, children = []) {
     this.value = value;
     this.children = children;
@@ -8,8 +8,8 @@ class KAryTree {
     this.children.push(tree);
   }
 
-  inOrder() {
-    return [this.value, this.children.map((child) => child.inOrder())].flat();
+  preOrder() {
+    return [this.value, this.children.map((child) => child.preOrder())];
   }
 }
 
@@ -19,6 +19,6 @@ function fizzBuzz(tree) {
 }
 
 module.exports = {
-  KAryTree,
+  Tree,
   fizzBuzz,
 };
