@@ -14,10 +14,21 @@ describe("FizzBuzzTree", () => {
     expect(tree).not.toBe(fizzBuzzTree);
     expect(fizzBuzzTree.preOrder()).toStrictEqual([
       1,
-      [2],
-      ["fizz", [4, ["buzz"], ["fizz"]], [7]],
-      [8, ["fizz", ["buzz"], [11]], ["fizz"]],
-      [13, [14, ["fizzbuzz"], [16]]],
+      2,
+      "fizz",
+      4,
+      "buzz",
+      "fizz",
+      7,
+      8,
+      "fizz",
+      "buzz",
+      11,
+      "fizz",
+      13,
+      14,
+      "fizzbuzz",
+      16,
     ]);
   });
 });
