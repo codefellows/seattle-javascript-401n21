@@ -47,23 +47,33 @@ As a component based system, React does an awful lot for us, principally, it get
 JSX
 
 ```javascript
-const element = () => {
-  return {
+const Header = ({greeting}) => {
+  return (
     <h1 className="greeting">
-      Hello, world!
+      {greeting}
     </h1>
-  }
-);
+  );
+};
+
+const App = () => {
+  return <Header greeting="Hello, world!" />
+} 
 ```
 
 Behind the scenes...
 
 ```javascript
-const element = React.createElement(
-  'h1',
-  {className: 'greeting'},
-  'Hello, world!'
-);
+const Header = ({greeting}) => 
+  React.createElement(
+    'h1',
+    {className: 'greeting'},
+    greeting
+  );
+
+const App = () => React.createElement(
+  Header,
+  {greeting: "Hello, world!"}
+)
 ```
 
 ### Basic (Basic) React
