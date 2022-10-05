@@ -1,18 +1,5 @@
 // A Header component
 
-// export class Header extends React.Component {
-//   render() {
-//     // Change "My Website" to be a value passed from the calling component
-//     return <header><h1>{this.props.siteName}</h1></header>;
-//   }
-// }
-
-// const Header = (props) => (
-//   <header>
-//     <h1>{props.siteName}</h1>
-//   </header>
-// );
-
 const Header = ({ siteName, headerColor }) => (
   <header
     style={{
@@ -25,47 +12,27 @@ const Header = ({ siteName, headerColor }) => (
 
 const App = () => (
   <>
-    <Header siteName="My Website" headerColor={[2, 5, 7]} />
+    <Header siteName="My Website" headerColor={[22, 58, 77]} />
     <Cookie />;
   </>
 );
 
-// Use it in an app
-// import {Header} from './header';
-// class App extends React.Component {
-//   render() {
-//     return
-//     (<>
-//       <Header siteName="My Website" />
-//       <Cookie />;
-//     </>);
-//   }
-// }
-
-// export class Cookie extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     // this.state = { clicks: 0 };
-//   }
-
-//   handleClick = () => {
-//     console.log("Cookies clicked");
-//     // this.setState({ clicks: this.state.clicks + 1 });
-//   };
-
-//   render() {
-//     return <button onClick={this.handleClick}>{/*this.state.clicks*/}5</button>;
-//   }
-// }
-
 const Cookie = () => {
+  // this.state = initialValue
+  let [clicks, setClicks] = useState(/* initialValue */ 0); // A react hook that remembers a value over time
+  // "time" being multiple react renders
+  // Tracks one "piece" of data, but as complicated as you want
+  //     number, string, object, etc
+
   const handleClick = () => {
     console.log("Cookies clicked");
     // this.setState({ clicks: this.state.clicks + 1 });
+    setClicks(clicks + 1); // ✅
   };
   return (
     <>
-      <button onClick={handleClick}>{/* this.state.clicks */} 5 </button>
+      {/* <button onClick={() => setState(state + 1)}>{state}</button> */}
+      <button onClick={handleClick}>{clicks}</button>
     </>
   );
 };
