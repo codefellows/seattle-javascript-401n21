@@ -1,6 +1,6 @@
-const { createElement: e, useState } = require("react");
+const e = React.createElement;
 
-const Header = ({ siteName, headerColor }) =>
+export const Header = ({ siteName, headerColor }) =>
   e(
     "header",
     {
@@ -11,8 +11,8 @@ const Header = ({ siteName, headerColor }) =>
     e("h1", {}, siteName)
   );
 
-const Cookie = () => {
-  let [clicks, setClicks] = useState(0);
+export const Cookie = () => {
+  let [clicks, setClicks] = React.useState(0);
 
   const handleClick = () => {
     console.log("Cookies clicked");
@@ -30,11 +30,9 @@ const App = () =>
     e(Cookie, {})
   );
 
-const main = () => {
+export const main = () => {
   const domContainer = document.querySelector("#root");
   const root = ReactDOM.createRoot(domContainer);
   const app = e(App);
   root.render(app);
 };
-
-module.exports = { main, Cookie, Header };
