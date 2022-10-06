@@ -42,33 +42,35 @@ export const Cookies = ({ stores }: { stores: CookieStand[] }) => (
   <table>
     <thead>
       <tr>
-        <th></th>
+        <th key="a"></th>
         {hours.map((h) => (
-          <th>{h}</th>
+          <th key={h}>{h}</th>
         ))}
-        <th>Total</th>
+        <th key="z">Total</th>
       </tr>
     </thead>
     <tbody>
       {stores.map((store) => (
-        <tr>
-          <td>{store.locationName}</td>
-          {store.cookiesEachHour.map((cookies) => (
-            <td>{cookies}</td>
+        <tr key={store.locationName}>
+          <td key="a">{store.locationName}</td>
+          {store.cookiesEachHour.map((cookies, i) => (
+            <td key={i}>{cookies}</td>
           ))}
-          <td>{store.totalCookies}</td>
+          <td key="z">{store.totalCookies}</td>
         </tr>
       ))}
     </tbody>
     <tfoot>
       <tr>
-        <th></th>
+        <th key="a"></th>
         {hours.map((_, i) => (
-          <td>
+          <td key={i}>
             {stores.reduce((sum, store) => sum + store.cookiesEachHour[i], 0)}
           </td>
         ))}
-        <td>{stores.reduce((sum, store) => sum + store.totalCookies, 0)}</td>
+        <td key="z">
+          {stores.reduce((sum, store) => sum + store.totalCookies, 0)}
+        </td>
       </tr>
     </tfoot>
   </table>
