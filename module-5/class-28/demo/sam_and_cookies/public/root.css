@@ -1,0 +1,15 @@
+:root {
+  --pats-color: indigo;
+}
+
+header {
+  color: var(--pats-color);
+}
+
+table {
+  color: var(--pats-color);
+}
+
+form {
+  color: var(--pats-color);
+}

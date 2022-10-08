@@ -50,9 +50,11 @@ function App() {
   return (
     <>
       <Header />
-      <p>There are {bigStores} high-sales stores!</p>
-      <Cookies stores={stores} />
-      <Form onAddStore={setFormValues} />
+      <main>
+        <p>There are {bigStores} high-sales stores!</p>
+        <Cookies stores={stores} />
+        <Form onAddStore={setFormValues} />
+      </main>
       <Footer />
     </>
   );
