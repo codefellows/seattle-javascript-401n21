@@ -2,7 +2,7 @@ import "./App.css";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { Cookies, CookieStand } from "./components/cookies";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Form, StoreFormValues } from "./components/form";
 
 const STARTING_STORES = [
@@ -21,6 +21,18 @@ function App() {
     // console.log("Effect ran");
     console.log(`There are now ${stores.length} stores`);
   }, [stores]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await fetch("https://www.reddit.com/r/reactjs.json", {
+        method: "POST",
+        body: JSON.stringify({ data: "value" }),
+      });
+      const json = await response.json();
+      console.log(json);
+    };
+    getData();
+  }, []);
 
   useEffect(() => {
     if (formValues !== undefined) {
