@@ -2,7 +2,8 @@ import "./App.css";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { Cookies, CookieStand } from "./components/cookies";
-import { FormEvent, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Form, StoreFormValues } from "./components/form";
 
 const STARTING_STORES = [
   new CookieStand("Seattle", 23, 65, 6.3),
@@ -14,44 +15,32 @@ const STARTING_STORES = [
 
 function App() {
   const [stores, setStores] = useState(STARTING_STORES);
+  const [formValues, setFormValues] = useState<undefined | StoreFormValues>();
 
-  function addStore(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  useEffect(() => {
+    // console.log("Effect ran");
+    console.log(`There are now ${stores.length} stores`);
+  }, [stores]);
 
-    const target = e.target as HTMLFormElement;
+  useEffect(() => {
+    if (formValues !== undefined) {
+      const { name, min, max, avg } = formValues;
+      const store = new CookieStand(name, min, max, avg);
+      setStores([...stores, store]);
+      setFormValues(undefined);
+    }
+  }, [formValues, stores]);
 
-    const name = (target[0] as HTMLInputElement).value;
-    const min = (target[1] as HTMLInputElement).value;
-    const max = (target[2] as HTMLInputElement).value;
-    const avg = (target[3] as HTMLInputElement).value;
-
-    const store = new CookieStand(name, Number(min), Number(max), Number(avg));
-    setStores([...stores, store]);
-  }
+  const bigStores = useMemo(() => {
+    return stores.filter((store) => store.totalCookies > 1000).length;
+  }, [stores]);
 
   return (
     <>
       <Header />
+      <p>There are {bigStores} high-sales stores!</p>
       <Cookies stores={stores} />
-      <form onSubmit={addStore}>
-        <label>
-          Store name <input name="store" />
-        </label>
-        <br />
-        <label>
-          Min Customers per hour <input name="min" />
-        </label>
-        <br />
-        <label>
-          Max customers per hour <input name="max" />
-        </label>
-        <br />
-        <label>
-          Average cookies per sale <input name="avg" />
-        </label>
-        <br />
-        <button type="submit">Add store</button>
-      </form>
+      <Form onAddStore={setFormValues} />
       <Footer />
     </>
   );
