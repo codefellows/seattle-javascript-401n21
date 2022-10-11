@@ -17,15 +17,13 @@ export function inGenreFilter(genre: string) {
 }
 
 export function sortYear(movies: Movie[]): Movie[] {
-  return movies.sort((a, b) => a.year - b.year);
+  return movies.sort(yearComparator);
 }
 
 export function sortTitle(movies: Movie[]): Movie[] {
-  return movies.sort((a, b) =>
-    a.title.replace("The ", "").localeCompare(b.title.replace("The ", ""))
-  );
+  return movies.sort(titleComparator);
 }
 
 export function inGenre(movies: Movie[], genre: string): Movie[] {
-  return movies.filter((a) => a.genres.includes(genre));
+  return movies.filter(inGenreFilter(genre));
 }
