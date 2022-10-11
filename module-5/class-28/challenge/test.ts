@@ -1,5 +1,5 @@
 import { Movies } from "./movies";
-import { inGenre, sortTitle, sortYear } from "./sort";
+import { inGenre, sortTitle, sortYear, yearComparator } from "./sort";
 
 describe("Sorters", () => {
   it("can sort movies by year", () => {
@@ -40,5 +40,28 @@ describe("Sorters", () => {
       "Crocodile Dundee",
       "Stardust",
     ]);
+  });
+});
+
+describe("Comparison", () => {
+  it("can compare movies by year", () => {
+    expect(
+      yearComparator(
+        { title: "A", year: 2000, genres: [] },
+        { title: "B", year: 1998, genres: [] }
+      )
+    ).toBeGreaterThan(0);
+    expect(
+      yearComparator(
+        { title: "B", year: 1998, genres: [] },
+        { title: "A", year: 2000, genres: [] }
+      )
+    ).toBeLessThan(0);
+    expect(
+      yearComparator(
+        { title: "A", year: 2000, genres: [] },
+        { title: "A", year: 2000, genres: [] }
+      )
+    ).toBe(0);
   });
 });
