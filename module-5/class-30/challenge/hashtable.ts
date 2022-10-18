@@ -1,31 +1,31 @@
 // Your linked list from earlier labs
 class LinkedList<V> {}
 
-export class HashTable<K, V> {
-  private data: Array<LinkedList<[K, V]>>;
+export class HashTable<V> {
+  private data: Array<LinkedList<[string, V]>>;
 
   constructor(readonly capacity: number) {
     this.data = new Array(this.capacity);
   }
 
-  get(key: K): V | never {
+  get(key: string): V | never {
     // |never means this will throw if the key is not present
     throw new Error("Unimplemented");
   }
 
-  set(key: K, value: V): void {
+  set(key: string, value: V): void {
     throw new Error("Unimplemented");
   }
 
-  has(key: K): boolean {
+  has(key: string): boolean {
     throw new Error("Unimplemented");
   }
 
-  keys(): K[] {
+  keys(): string[] {
     throw new Error("Unimplemented");
   }
 
-  hash(key: K): number {
+  hash(key: string): number {
     throw new Error("Unimplemented");
   }
 }
