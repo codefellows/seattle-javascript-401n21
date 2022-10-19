@@ -4,6 +4,7 @@ import { Footer } from "./components/footer";
 import { Cookies, CookieStand } from "./components/cookies";
 import { useEffect, useMemo, useState } from "react";
 import { Form, StoreFormValues } from "./components/form";
+import { AppContext } from "./app.context";
 
 const STARTING_STORES = [
   new CookieStand("Seattle", 23, 65, 6.3),
@@ -23,18 +24,6 @@ function App() {
   }, [stores]);
 
   useEffect(() => {
-    const getData = async () => {
-      const response = await fetch("https://www.reddit.com/r/reactjs.json", {
-        method: "POST",
-        body: JSON.stringify({ data: "value" }),
-      });
-      const json = await response.json();
-      console.log(json);
-    };
-    getData();
-  }, []);
-
-  useEffect(() => {
     if (formValues !== undefined) {
       const { name, min, max, avg } = formValues;
       const store = new CookieStand(name, min, max, avg);
@@ -47,15 +36,20 @@ function App() {
     return stores.filter((store) => store.totalCookies > 1000).length;
   }, [stores]);
 
+  const [siteOwner, setSiteOwner] = useState("Hugo");
+
   return (
     <>
-      <Header />
-      <main>
-        <p>There are {bigStores} high-sales stores!</p>
-        <Cookies stores={stores} />
-        <Form onAddStore={setFormValues} />
-      </main>
-      <Footer />
+      <AppContext.Provider value={{ siteOwner }}>
+        <Header />
+        <main>
+          <p>There are {bigStores} high-sales stores!</p>
+          <Cookies stores={stores} />
+          <Form onAddStore={setFormValues} />
+        </main>
+        <Footer />
+      </AppContext.Provider>
+      <input onChange={(e) => setSiteOwner(e.target.value)} />
     </>
   );
 }

@@ -1,15 +1,34 @@
+@layers base, components;
+
+@media (prefers-color-scheme: dark) {
+  @layer base {
+    * {
+      background-color: black;
+      color: white;
+    }
+  }
+}
+
 :root {
   --pats-color: indigo;
 }
 
-header {
-  color: var(--pats-color);
-}
+@layer components {
+  header {
+    color: var(--pats-color);
+  }
 
-table {
-  color: var(--pats-color);
-}
+  table {
+    color: var(--pats-color);
+  }
 
-form {
-  color: var(--pats-color);
+  form {
+    color: var(--pats-color);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --pats-color: pink;
+    }
+  }
 }
