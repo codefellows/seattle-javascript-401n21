@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer, useState } from "react";
+import React, { useReducer } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -31,32 +31,35 @@ export const setBodyIfNotGet = (state: AppState, body: object) => {
   return state;
 };
 
-export const dispatchAction = (state: AppState, action: {action: string, body: unknown}) {
+export const dispatchAction = (
+  state: AppState,
+  action: { action: string; body: unknown }
+) => {
   switch (action.action) {
-    case 'method':
-      return changeMethod(state, action.body as 'GET'|'POST'|'PUT');
-    case 'body':
+    case "method":
+      return changeMethod(state, action.body as "GET" | "POST" | "PUT");
+    case "body":
       return setBodyIfNotGet(state, action.body as object);
     default:
       return state;
   }
-}
+};
 
 function App() {
   const [state, dispatch] = useReducer(dispatchAction, {
     method: "GET",
     url: "http://localhost:3000",
     body: undefined,
-    response: undefined
+    response: undefined,
   });
 
   const updateBodyIfNotGet = (body: object) => {
-      dispatch({action: 'body', body: {}})
-    };
+    dispatch({ action: "body", body: {} });
+  };
 
-  const updateMethod = (method: "GET"|"POST"|"PUT") => {
-    dispatch({action: "method", body: method});
-  }
+  const updateMethod = (method: "GET" | "POST" | "PUT") => {
+    dispatch({ action: "method", body: method });
+  };
 
   return (
     <div className="App">
