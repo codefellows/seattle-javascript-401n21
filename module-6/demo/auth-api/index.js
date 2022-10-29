@@ -16,7 +16,7 @@ const users = [
     id: 1,
     username: 'admin',
     password: 'ADMIN',
-    email: 'highlander.44@gmail.com',
+    email: 'highlander.33@gmail.com',
     role: 'admin',
   },
   {
@@ -30,7 +30,7 @@ const users = [
     id: 3,
     username: 'writer',
     password: 'WRITER',
-    email: 'highlander.11@gmail.com',
+    email: 'highlander.44@gmail.com',
     role: 'writer',
   },
   {
@@ -51,8 +51,8 @@ const roles = {
 
 
 app.post('/login', (req, res) => {
-  const {username, password} = req.body;
-  const token = handleGetUser({username, password});
+  const {email} = req.body;
+  const token = handleGetUser({email});
   const status = token ? 200 : 403;
   res.status(status).json({token});
 });
@@ -62,7 +62,7 @@ function handleGetUser( search ) {
   // Should be *yow will do this* make a db call
   const user = users.filter( u => {
     // Filter builds an array based on evaluating true
-    return u.username === search.username && u.password === search.password;
+    return u.email === search.email;
   })[0];
 
   let token = null;
