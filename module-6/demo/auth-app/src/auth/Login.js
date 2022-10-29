@@ -1,53 +1,45 @@
-import React from 'react';
-
-import {When} from 'react-if';
+import React, {useContext, useEffect} from 'react';
+import {useAuth0} from '@auth0/auth0-react';
+import {If, Then, Else} from 'react-if';
 
 import {LoginContext} from "./context.js";
 
-class Login extends React.Component {
+function Login() {
 
-  static contextType = LoginContext;
+  const context = useContext(LoginContext);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: null,
-      password: null
-    };
+  const {
+    isAuthenticated,
+    logout,
+    loginWithRedirect,
+    user
+  } = useAuth0();
+
+  function handleLogin() {
+    loginWithRedirect();
   }
 
-  handleChange = (e) => {
-    this.setState( { [e.target.name]: e.target.value })
+  function handleLogout() {
+    context.logout();
+    logout();
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.context.login(this.state.username, this.state.password);
-  }
+  useEffect( () => {
+    if(isAuthenticated && user) {
+      context.login(user);
+    }
+  }, [isAuthenticated, user])
 
-  render() {
-    return (
-      <>
-        <When condition={this.context.loggedIn}>
-          <button onClick={this.context.logout}>Log Out</button>
-        </When>
-        <When condition={!this.context.loggedIn}>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              placeholder="username"
-              name="username"
-              onChange={this.handleChange}/>
-            <input
-              placeholder="password"
-              name="password"
-              type="password"
-              onChange={this.handleChange} />
-            <button type="submit">Log In</button>
-          </form>
-        </When>
-      </>
-    )
-  }
+  return (
+      <If condition={isAuthenticated}>
+        <Then>
+          <button onClick={handleLogout}>Log Out</button>
+        </Then>
+        <Else>
+          <button onClick={handleLogin}>Log In</button>
+        </Else>
+      </If>
+  )
 
 }
 
