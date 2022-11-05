@@ -2,12 +2,16 @@ import React from "react";
 import logo from "./logo.svg";
 import { Counter } from "./features/counter/Counter";
 import "./App.css";
+import { Beasts } from "./features/beasts/Beasts";
+import { Horns } from "./features/beasts/Horns";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <Horns />
+        <Beasts />
         <Counter />
         {/* <p>
           Edit <code>src/App.tsx</code> and save to reload.
