@@ -4,7 +4,7 @@ import { Footer } from "./components/footer";
 import { Cookies, CookieStand } from "./components/cookies";
 
 function App() {
-  const stores = [
+  const stores: CookieStand[] = [
     new CookieStand("Seattle", 23, 65, 6.3),
     new CookieStand("Tokyo", 3, 24, 1.2),
     new CookieStand("Dubai", 11, 38, 3.7),
